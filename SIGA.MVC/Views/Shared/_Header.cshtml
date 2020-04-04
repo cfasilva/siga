@@ -1,0 +1,54 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        @Html.ActionLink("SIGA", "Index", "Home", null, new { @class = "navbar-brand" })
+    </div>
+    <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cadastros<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li class="">@Html.ActionLink("Local de Instalação", "Index", "LocalInstalacao")</li>
+                    <li class="">@Html.ActionLink("Circuito", "Index", "Circuito")</li>
+                    <li class="">@Html.ActionLink("Tarefa", "Index", "Tarefa")</li>
+                    <li class="">@Html.ActionLink("Família", "Index", "Familia")</li>
+                    <li class="divider"></li>
+                    <li class="">@Html.ActionLink("Processo", "Index", "Processo")</li>
+                    <li class="">@Html.ActionLink("Usina", "Index", "Usina")</li>
+                    <li class="">@Html.ActionLink("Disciplina", "Index", "Disciplina")</li>
+                    <li class="">@Html.ActionLink("Site", "Index", "Site")</li>
+                    
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Confiabilidade<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li class="">@Html.ActionLink("FMEA", "Index", "Fmea")</li>
+                    <li class="">@Html.ActionLink("PMP", "Index", "Pmp")</li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Análise<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li class="">@Html.ActionLink("Análise da Programação", "Index", "Programacao")</li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Relatórios<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li class="">@Html.ActionLink("Local de Instalacao", "Index", "RelLocal")</li>
+                    <li class="">@Html.ActionLink("Detalhe Circuito", "Index", "RelCircuito")</li>
+                    <li class="">@Html.ActionLink("Programação Manutenção", "Index", "RelProgramacao")</li>
+                    <li class="">@Html.ActionLink("Vínculos", "Index", "RelVinculo")</li>
+                </ul>
+            </li>
+        </ul>
+        @Html.Partial("_LoginPartial")
+    </div>
+}

@@ -1,0 +1,56 @@
+﻿@model SIGA.DAL.Usina
+@{
+    ViewBag.Title = "Usina";
+}
+
+@if (TempData["SUCESSO"] != null)
+{
+    @Html.Partial("_PartialSuccess")
+}
+else if (TempData["ERRO"] != null)
+{
+    @Html.Partial("_PartialError")
+}
+
+<ol class="breadcrumb">
+    <li>@Html.ActionLink("Início", "Index", "Home")</li>
+    <li>@Html.ActionLink("Listagem", "Index", "Usina")</li>
+    <li class="active">Usina</li>
+</ol>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            
+            <div class="form-group">
+                @Html.LabelFor(model => model.ID)
+                @Html.TextBoxFor(model => model.ID, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ID)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Descricao)
+                @Html.TextBoxFor(model => model.Descricao, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Descricao)
+            </div>
+
+            <button class="btn btn-primary btn-success"><i class="glyphicon glyphicon-save"></i> Salvar</button>
+            <span>ou</span>
+            @Html.ActionLink("voltar à listagem", "Index")
+        }
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+        $(function () {
+            //Desaparece com a barra de alerta.
+            window.setTimeout(function () { $(".alert").slideUp(); }, 3000);
+        });
+    </script>
+}

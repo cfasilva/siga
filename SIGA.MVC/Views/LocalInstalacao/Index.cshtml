@@ -1,0 +1,117 @@
+﻿@using SIGA.DAL;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<LocalInstalacao>
+
+@{
+    ViewBag.Title = "Local de Instalação";
+}
+
+@section styles {
+    <link href="@Url.Content("~/Content/PagedList.css")" rel="stylesheet" type="text/css" />
+}
+
+<div id="divInfo" class="alert alert-info" style="display:none">
+    <strong>Aviso!</strong> Selecione ao menos um registro.
+</div>
+<div id="divSuccess" class="alert alert-success" style="display:none">
+    <strong>Aviso!</strong> Operação realizada com sucesso!
+</div>
+
+<ol class="breadcrumb">
+    <li>@Html.ActionLink("Início", "Index", "Home")</li>
+    <li class="active">Listagem Locais de Instalação</li>
+</ol>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="top">
+            <div class="navbar-btn">
+                <a class="btn btn-primary" href="@Url.Action("CreateEdit", new { id = 0 })"><i class="glyphicon glyphicon-plus-sign"></i> Novo</a>
+                <a id="btnExcluir" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i> Excluir</a>
+            </div>
+
+            @using (Html.BeginForm("Index", "LocalInstalacao", FormMethod.Get, new { @class = "form-inline" }))
+            {
+                @Html.TextBox("searchTag", ViewBag.CurrentFilter as string, new { @class = "form-control", placeholder = "Tag" })
+
+                <button type="submit" class="btn"><i class="glyphicon glyphicon-search"></i> Buscar</button>
+            }
+        </div>
+        <br />
+        <table class="table table-striped table-hover table-condensed">
+            <thead class="panel panel-default">
+                <tr>
+                    <th><input type="checkbox" /></th>
+                    <th>@Html.ActionLink("Tag", "Index", new { sortOrder = ViewBag.TagSortParm })</th>
+                    <th>@Html.ActionLink("Tag Pai", "Index", new { sortOrder = ViewBag.TagPaiSortParm })</th>
+                    <th>@Html.ActionLink("Família", "Index", new { sortOrder = ViewBag.FamiliaSortParm })</th>
+                    <th>@Html.ActionLink("Processo", "Index", new { sortOrder = ViewBag.ProcessoSortParm })</th>
+                    <th>@Html.ActionLink("Usina", "Index", new { sortOrder = ViewBag.UsinaSortParm })</th>
+                    <th>@Html.ActionLink("Disciplina", "Index", new { sortOrder = ViewBag.DisciplinaSortParm })</th>
+                    <th>@Html.ActionLink("Site", "Index", new { sortOrder = ViewBag.SiteSortParm })</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td><input type="checkbox" value="@item.Tag" /></td>
+                        <td>@Html.ActionLink(item.Tag, "CreateEdit", new { id = item.Tag })</td>
+                        <td>@Html.DisplayFor(m => item.TagPai)</td>
+                        <td>@Html.DisplayFor(m => item.Familia.Descricao)</td>
+                        <td>@Html.DisplayFor(m => item.Processo.Descricao)</td>
+                        <td>@Html.DisplayFor(m => item.Usina.Descricao)</td>
+                        <td>@Html.DisplayFor(m => item.Disciplina.Descricao)</td>
+                        <td>@Html.DisplayFor(m => item.Site.Descricao)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <div class="bottom">
+            Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script type="text/javascript">
+        $(function () {
+            $.ajaxSetup({ cache: false });
+
+            $(".table th input:checkbox").click(function () {
+                $checks = $(this).closest(".table").find("tbody input:checkbox");
+                if ($(this).is(":checked")) {
+                    $checks.prop("checked", true);
+                } else {
+                    $checks.prop("checked", false);
+                }
+            });
+
+            $("#btnExcluir").click(function () {
+                window.setTimeout(function () { $(".alert").slideUp(); }, 3000);
+
+                if ($(".table tbody input:checkbox:checked").length === 0) {
+                    $("#divInfo").slideDown();
+                    return false;
+                }
+
+                bootbox.confirm("Deseja realmente excluir o(s) registro(s) selecionado(s)?", function (result) {
+                    if (result) {
+                        $.ajax({
+                            url: "/LocalInstalacao/DeleteConfirmed",
+                            type: "POST",
+                            data: "ids=1,2,3",
+                            success: function (result) {
+                                if (result.success) {
+                                    $("#divSuccess").slideDown();
+                                }
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+}

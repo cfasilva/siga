@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CBB5C8C4-190D-40AA-9150-A2081220E7D4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SIGA.DAL</RootNamespace>
+    <AssemblyName>SIGA.DAL</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Circuito.cs" />
+    <Compile Include="Models\Disciplina.cs" />
+    <Compile Include="Models\Empresa.cs" />
+    <Compile Include="Models\Especialidade.cs" />
+    <Compile Include="Models\Familia.cs" />
+    <Compile Include="Models\FMEA.cs" />
+    <Compile Include="Models\ItemCircuito.cs" />
+    <Compile Include="Models\ItemFMEA.cs" />
+    <Compile Include="Models\ItemLocalPMP.cs" />
+    <Compile Include="Models\ItemPMP.cs" />
+    <Compile Include="Models\LocalInstalacao.cs" />
+    <Compile Include="Models\LocalInstalacaoFMEA.cs" />
+    <Compile Include="Models\LocalInstalacaoPMP.cs" />
+    <Compile Include="Models\Mapping\CircuitoMap.cs" />
+    <Compile Include="Models\Mapping\DisciplinaMap.cs" />
+    <Compile Include="Models\Mapping\EmpresaMap.cs" />
+    <Compile Include="Models\Mapping\EspecialidadeMap.cs" />
+    <Compile Include="Models\Mapping\FamiliaMap.cs" />
+    <Compile Include="Models\Mapping\FMEAMap.cs" />
+    <Compile Include="Models\Mapping\ItemCircuitoMap.cs" />
+    <Compile Include="Models\Mapping\ItemFMEAMap.cs" />
+    <Compile Include="Models\Mapping\ItemLocalPMPMap.cs" />
+    <Compile Include="Models\Mapping\ItemPMPMap.cs" />
+    <Compile Include="Models\Mapping\LocalInstalacaoFMEAMap.cs" />
+    <Compile Include="Models\Mapping\LocalInstalacaoMap.cs" />
+    <Compile Include="Models\Mapping\LocalInstalacaoPMPMap.cs" />
+    <Compile Include="Models\Mapping\PMPMap.cs" />
+    <Compile Include="Models\Mapping\ProcessoMap.cs" />
+    <Compile Include="Models\Mapping\SiteMap.cs" />
+    <Compile Include="Models\Mapping\TarefaMap.cs" />
+    <Compile Include="Models\Mapping\TipoManutencaoMap.cs" />
+    <Compile Include="Models\Mapping\TipoPeriodoMap.cs" />
+    <Compile Include="Models\Mapping\UsinaMap.cs" />
+    <Compile Include="Models\PMP.cs" />
+    <Compile Include="Models\Processo.cs" />
+    <Compile Include="SigaContext.cs" />
+    <Compile Include="Models\Site.cs" />
+    <Compile Include="Models\Tarefa.cs" />
+    <Compile Include="Models\TipoManutencao.cs" />
+    <Compile Include="Models\TipoPeriodo.cs" />
+    <Compile Include="Models\Usina.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
